@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;1,400&amp;display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Main container wrapping the entire application -->
+    <div class="container">
+        <!-- Header Section containing subject title and theme toggle -->
+        <header>
+            <!-- Displays the currently selected quiz subject (hidden on start menu) -->
+            <div class="header-subject" id="header-subject">
+                <div class="icon-bg" id="header-icon-bg">
+                    <svg id="header-icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                        height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+                <span id="header-subject-title">Accessibility</span>
+                
+            </div>
+
+            <!-- Theme Toggle container for switching between light and dark modes -->
+            <div class="theme-toggle">
+                <!-- Sun Icon -->
+                <span class="theme-icon icon-sun">☀️</span>
+
+                <!-- Toggle Switch -->
+                <input type="checkbox" id="theme-switch" class="simple-toggle" aria-label="Toggle Dark Mode">
+
+                <!-- Moon Icon -->
+                <span class="theme-icon icon-moon">🌙</span>
+            </div>
+        </header>
+
+        <!-- Main content area where different views (Start Menu, Quiz, Summary) are rendered -->
+        <main id="main-content">
+            <!-- Start Menu: Initial view where the user selects a quiz subject -->
+            <div class="view-section start-menu" id="start-menu">
+                <!-- Welcome greeting text -->
+                <div class="left-section">
+                    <h1>Welcome to the <span>Frontend Quiz!</span></h1>
+            <p class="subtitle">Pick a subject to get started.</p>
+                </div>
+
+                <!-- Subject selection buttons container -->
+                <div class="right-section">
+                    <!-- HTML Subject Button -->
+                    <button class="subject-btn start-item" data-subject="html">
+                        <div class="icon-bg icon-html">
+                            <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24"
+                                stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <span>HTML</span>
+                    </button>
+
+                    <button class="subject-btn start-item" data-subject="css">
+                        <div class="icon-bg icon-css">
+                            <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24"
+                                stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                                <circle cx="12" cy="18" r="1.5" fill="currentColor"></circle>
+                                <path d="M8 7v4a4 4 0 0 0 8 0V7"></path>
+                            </svg>
+                        </div>
+                        <span>CSS</span>
+                    </button>
+
+                    <button class="subject-btn start-item" data-subject="javascript">
+                        <div class="icon-bg icon-js">
+                            <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24"
+                                stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4h16v16H4z" stroke="none" fill="currentColor" fill-opacity="0.1" />
+                                <path d="M15 17c-2 0 -2 -2 -2 -2" />
+                                <path d="M15 11c1.5 0 2 .5 2 2s-.5 2 -2 2s-2 -.5 -2 -2" />
+                                <path d="M9 17c-2 0 -2 -2 -2 -2" />
+                                <path d="M9 11v6" />
+                            </svg>
+                        </div>
+                        <span>Javascript</span>
+                    </button>
+
+                    <button class="subject-btn start-item" data-subject="accessibility">
+                        <div class="icon-bg icon-acc">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                <path
+                                    d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span>Accessibility</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz View: Active quiz state displaying questions and multiple-choice options -->
+            <div class="view-section quiz-view" id="quiz-view">
+                <!-- Left section of the quiz: Shows question count, question text, and progress bar -->
+                <div class="left-section quiz-left">
+                    <div>
+                        <p class="question-count" id="question-count">Question 6 of 10</p>
+                        <h2 class="question-text" id="question-text">Which of these color contrast ratios defines the
+                            minimum WCAG 2.1 Level AA requirement for normal text?</h2>
+                    </div>
+                    <!-- Visual progress indicator showing how far along the user is -->
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Right section of the quiz: Contains the multiple-choice option buttons and submit logic -->
+                <div class="right-section quiz-right">
+                    <!-- Option A -->
+                    <button class="option-btn" data-option="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">4.5 : 1</div>
+                    </button>
+                    <button class="option-btn" data-option="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">3 : 1</div>
+                    </button>
+                    <button class="option-btn" data-option="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">2.5 : 1</div>
+                    </button>
+                    <button class="option-btn" data-option="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">5 : 1</div>
+                    </button>
+                    <button class="submit-btn" id="submit-btn">Submit Answer</button>
+
+                </div>
+            </div>
+
+            <!-- Summary View: Displayed when the quiz is finished, shows the final score -->
+            <div class="view-section summary-view" id="summary-view">
+                <!-- Final state greeting -->
+                <div class="left-section">
+                    <h1 class="summary-heading">Quiz completed<br><strong>You scored...</strong></h1>
+                </div>
+                <!-- Final score breakdown and replay button -->
+                <div class="right-section">
+                    <div class="score-container">
+                        <div class=" score-subject">
+                            <div class="icon-bg" id="summary-icon-bg"></div>
+                             <span id="summary-subject-title">Subject</span>
+                             
+                        </div>
+                        <div class="score-number" id="score-number">10</div>
+                        <div class="score-out-of" id="score-out-of">out of 10</div>
+                    </div>
+                    <button class="submit-btn" id="restart-btn">Play Again</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
