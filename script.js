@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scoreOutOf) scoreOutOf.textContent = `out of ${currentQuizQuestions.length}`;
             
             if (summarySubjectTitle && summaryIconBg) {
-                summarySubjectTitle.textContent = "hello title";
+                summarySubjectTitle.textContent = currentSubjectInfo.title;
                 summaryIconBg.className = `icon-bg ${currentSubjectInfo.iconClass}`;
                 summaryIconBg.innerHTML = currentSubjectInfo.svg;
             }
